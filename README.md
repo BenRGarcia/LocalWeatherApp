@@ -1,5 +1,4 @@
 # LocalWeatherApp
 Web App that shows local weather based on geolocation data
 
-Take a look at the site on CodePen:
-https://codepen.io/SeeBenProgram/pen/wrGJwz
+Take a look at the site on <a href="https://codepen.io/SeeBenProgram/pen/wrGJwz" target="_blank">CodePen<a/>:
