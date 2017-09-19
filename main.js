@@ -62,7 +62,7 @@ if (navigator.geolocation) {
 		}; // End for loop
 
 	}; // End function renderCityState()
-	
+
 
 	// A function that takes latitude and longitude, retrieves local weather data from Free Code Camp Weather API
 	function localWeather(lat, lon) {
@@ -85,5 +85,22 @@ if (navigator.geolocation) {
 			apiRequest.send();
 
 	}; // End function localWeather()
+
+	// A function that renders local weather data to DOM
+	function renderLocalWeather(data) {
+
+		var celcius = data.main.temp;
+		var fahrenheit = celcius * 9 / 5 + 32;
+		var description = data.weather[0].description;
+		var iconURL = data.weather[data.weather.length - 1].icon;
+
+		document.getElementById("temperature").innerHTML = Math.floor(fahrenheit) + "&deg;F";
+		document.getElementById("description").innerHTML = description;
+		document.getElementById("weatherImage").src = iconURL;
+
+		// Call function that adds C & F selectors to the page
+		renderCFButtons(celcius, fahrenheit);
+
+	}; // End function renderLocalWeather()
 
 }; // End 'if (navigator.geolocation)'
