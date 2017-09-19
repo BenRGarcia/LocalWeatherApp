@@ -16,6 +16,7 @@ if (navigator.geolocation) {
 
 	});
 
+
 	// A function that takes latitude and longitude, retrieves location using Google Maps API
 	function cityState(lat, lon) {
 
@@ -37,6 +38,7 @@ if (navigator.geolocation) {
 		apiRequest.send();
 
 	}; // End function cityState()
+
 
 	// A function that renders 'city, state' to DOM
 	function renderCityState(data) {
@@ -60,5 +62,28 @@ if (navigator.geolocation) {
 		}; // End for loop
 
 	}; // End function renderCityState()
+	
+
+	// A function that takes latitude and longitude, retrieves local weather data from Free Code Camp Weather API
+	function localWeather(lat, lon) {
+
+		// Generate URL specific to geolocation (Weather API only accepts integers -- not full length coordinates)
+			var truncatedLat = Math.floor(lat);
+			var truncatedLon = Math.floor(lon);
+			var weatherAPI = 'https://fcc-weather-api.glitch.me/api/current?lat=' + truncatedLat + "&lon=" + truncatedLon;
+
+			// AJAX request to local weather data API
+			var apiRequest = new XMLHttpRequest();
+			apiRequest.open('GET', weatherAPI);
+
+			apiRequest.onload = function() {
+				var localWeather = JSON.parse(apiRequest.responseText);
+				renderLocalWeather(localWeather);
+			};
+
+			// Execute the apiRequest
+			apiRequest.send();
+
+	}; // End function localWeather()
 
 }; // End 'if (navigator.geolocation)'
