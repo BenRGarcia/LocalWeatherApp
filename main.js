@@ -38,4 +38,27 @@ if (navigator.geolocation) {
 
 	}; // End function cityState()
 
+	// A function that renders 'city, state' to DOM
+	function renderCityState(data) {
+
+		// Parse only the first geolocation JSON object
+		var fullAddress = data.results[0].address_components;
+
+		// Find the full city and state name within data
+		for (var i = 0; i < fullAddress.length; i++) {
+
+			if (fullAddress[i].types[0] == "locality") {
+				var city = fullAddress[i].long_name;
+			};
+
+			if (fullAddress[i].types[0] == "administrative_area_level_1") {
+				var state = fullAddress[i].long_name;
+			};
+
+			document.getElementById("city-state").innerHTML = city + ", " + state;
+
+		}; // End for loop
+
+	}; // End function renderCityState()
+
 }; // End 'if (navigator.geolocation)'
