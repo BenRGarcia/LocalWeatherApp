@@ -85,6 +85,7 @@ if (navigator.geolocation) {
 			apiRequest.send();
 
 	}; // End function localWeather()
+	
 
 	// A function that renders local weather data to DOM
 	function renderLocalWeather(data) {
@@ -102,5 +103,28 @@ if (navigator.geolocation) {
 		renderCFButtons(celcius, fahrenheit);
 
 	}; // End function renderLocalWeather()
+
+
+	// A function that renders celcius and fahrenheit button and temperature toggling to the page
+	function renderCFButtons(c, f) {
+
+		document.getElementById("buttons").innerHTML = "<button id='fahrOrCel'>&deg;C/&deg;F</button>";
+
+		// Toggle celcius and fahrenheit with button click event
+		var i = 2;
+
+		document.getElementById("fahrOrCel").addEventListener("click", function() {
+			console.log("Button was clicked!");
+			if (i % 2 == 0) {
+				document.getElementById("temperature").innerHTML = Math.floor(c) + "&deg;C";
+				i++;
+			} else {
+				document.getElementById("temperature").innerHTML = Math.floor(f) + "&deg;F";
+				i++;
+			};
+
+		});
+
+	}; // End renderCFButtons()
 
 }; // End 'if (navigator.geolocation)'
